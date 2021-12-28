@@ -1,5 +1,6 @@
 import { useStoreContext } from "../utils/GlobalState";
 import { UPDATE_PRODUCTS } from "../utils/actions";
+import Cart from '../components/Cart';
 
 const [state, dispatch] = useStoreContext();
 const { id } = useParams();
@@ -20,3 +21,4 @@ useEffect(() => {
     });
   }
 }, [products, data, dispatch, id]);
+
