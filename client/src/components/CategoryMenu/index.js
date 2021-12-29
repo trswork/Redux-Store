@@ -1,11 +1,21 @@
-import { useStoreContext } from "../../utils/GlobalState";
+import React, {useEffect} from "react";
+import { useQuery } from '@apollo/react-hooks';
+import { QUERY_CATEGORIES } from "../../utils/queries";
+import {UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY} from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
+import { useDispatch, useSelector } from 'react-redux';
+import { useStoreContext } from "../../utils/GlobalState";
 
-const [state, dispatch] = useStoreContext();
+function CategoryMenu() {
 
-const { categories } = state;
+  const state = useSelector((state) => {
+    return state;
+  });
+  const dispatch = useDispatch();
 
-const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
+  const { categories } = state;
+  const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
+
 
 useEffect(() => {
     if (categoryData) {
@@ -48,3 +58,6 @@ const handleClick = id => {
       ))}
     </div>
   );
+}
+
+export default CategoryMenu;
